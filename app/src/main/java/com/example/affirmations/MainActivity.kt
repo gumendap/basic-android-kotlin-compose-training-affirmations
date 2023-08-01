@@ -67,12 +67,16 @@ fun AffirmationsApp() {
     )
 }
 
+/** 
+items() requires the size of the List, not the List itself.
+affirmation requires ab Affirmation object, not the current index.
+*/
 @Composable
 fun AffirmationList(affirmationList: List<Affirmation>, modifier: Modifier = Modifier) {
     LazyColumn(modifier = modifier) {
-        items(affirmationList) { affirmation ->
+        items(affirmationList.size) { affirmation ->
             AffirmationCard(
-                affirmation = affirmation,
+                affirmation = affirmationList[affirmation],
                 modifier = Modifier.padding(8.dp)
             )
         }
